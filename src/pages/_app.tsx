@@ -63,7 +63,14 @@ if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const chains: [AppKitNetwork, ...AppKitNetwork[]] = [optimism]
+const optimismWithDrpc: AppKitNetwork = {
+  ...optimism,
+  rpcUrls: {
+    default: { http: [process.env.NEXT_PUBLIC_JSON_RPC_PROVIDER as string] },
+  },
+}
+
+export const chains: [AppKitNetwork, ...AppKitNetwork[]] = [optimismWithDrpc]
 const siweConfig = createSIWE(chains)
 
 createAppKit({
