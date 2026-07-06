@@ -32,13 +32,13 @@ import { ClaimBadgesProvider, useClaimBadges } from '@/components/badges/claimBa
  *  Botón desacoplado: dispara claim() del hook
  *  ——————————————————————————————— */
 function ClaimBadgesButton() {
-  const { claim, isPending, canClaim } = useClaimBadges()
+  const { claim, isPending } = useClaimBadges()
 
   return (
     <Button
       component="a"
       onClick={() => claim()}
-      disabled={!canClaim || isPending}
+      disabled={true}
       target="_blank"
       rel="noreferrer"
       variant="text"
@@ -71,7 +71,7 @@ function ClaimBadgesButton() {
           <LoadIcon sx={{ width: '100%', height: '100%' }} />
         </Box>
         <Typography variant="body2" fontWeight={600} color="white" sx={{ whiteSpace: 'nowrap' }}>
-          {isPending ? 'Claiming…' : 'Claim badges'}
+          Claim Badges
         </Typography>
       </Stack>
     </Button>

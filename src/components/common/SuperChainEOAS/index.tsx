@@ -1,9 +1,7 @@
-import { Box, Divider, Grid, IconButton, Paper, SvgIcon, Typography } from '@mui/material'
+import { Box, Divider, Grid, Paper, Typography } from '@mui/material'
 import css from './styles.module.css'
-import MoreIcon from '@/public/images/common/more.svg'
 import useSafeInfo from '@/hooks/useSafeInfo'
 import EthHashInfo from '../EthHashInfo'
-import AddEOAModal from '@/components/superChain/AddEOAModal'
 import { useEffect, useRef, useState } from 'react'
 import usePopulatedEOASRequest from '@/hooks/super-chain/usePopulatedEOASRequest'
 import type { Address } from 'viem'
@@ -19,7 +17,6 @@ export const REMOVE_POPULATE_INITIAL_STATE = {
 const SuperChainEOAS = () => {
   const { safe } = useSafeInfo()
   const [removePopulateContext, setRemovePopulateContext] = useState(REMOVE_POPULATE_INITIAL_STATE)
-  const [addEOAContext, setAddEOAContext] = useState(ADD_EOA_INITIAL_STATE)
   const {
     data: populatedOwners,
     loading: populatedOwnersLoading,
@@ -77,18 +74,6 @@ const SuperChainEOAS = () => {
               <Typography fontSize={16} fontWeight="600">
                 Connected Wallets
               </Typography>
-              <IconButton
-                disabled={populatedOwnersLoading}
-                onClick={() =>
-                  setAddEOAContext({
-                    open: true,
-                    currentAmountOfPopulatedOwners: populatedOwners?.ownerPopulateds?.length || 0,
-                  })
-                }
-                size="small"
-              >
-                <SvgIcon component={MoreIcon} inheritViewBox fontSize="medium" />
-              </IconButton>
             </Box>
             <Divider />
             <Box
@@ -137,11 +122,7 @@ const SuperChainEOAS = () => {
         context={removePopulateContext}
         onClose={() => setRemovePopulateContext(REMOVE_POPULATE_INITIAL_STATE)}
       />
-      <AddEOAModal
-        updateQuery={updateQuery}
-        context={addEOAContext}
-        onClose={() => setAddEOAContext(ADD_EOA_INITIAL_STATE)}
-      />
+
     </div>
   )
 }
