@@ -70,6 +70,7 @@ export function InlineClaimButton({ children, style }: { children?: React.ReactN
   const { claim } = useClaimBadges()
   return (
     <button
+      disabled={true}
       onClick={() => claim()}
       style={{
         WebkitBoxOrient: 'vertical',

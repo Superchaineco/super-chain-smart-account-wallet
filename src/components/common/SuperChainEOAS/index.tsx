@@ -122,7 +122,6 @@ const SuperChainEOAS = () => {
         context={removePopulateContext}
         onClose={() => setRemovePopulateContext(REMOVE_POPULATE_INITIAL_STATE)}
       />
-
     </div>
   )
 }
